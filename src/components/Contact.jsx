@@ -6,15 +6,38 @@ const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
+    
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "2affa834-a487-494e-9077-267bdf633deb",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        alert("Message sent successfully! I'll get back to you soon.");
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      alert("Error submitting the form! Please check your connection.");
+    } finally {
       setIsSubmitting(false);
-      setFormData({ name: '', email: '', message: '' });
-      alert("Message sent successfully (Simulated)");
-    }, 1500);
+    }
   };
 
   return (
