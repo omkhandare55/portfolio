@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Mail } from 'lucide-react';
+import { ArrowRight, Mail, Download } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Hero = () => {
@@ -67,6 +67,10 @@ const Hero = () => {
                 <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out z-0"></div>
               </a>
               
+              <a href="/resume.pdf" download="Om_Khandare_Resume.pdf" className="px-8 py-4 font-semibold rounded-full border border-primary text-primary hover:bg-primary hover:text-white transition-colors flex items-center gap-2 hover-trigger glass group">
+                <Download size={18} className="group-hover:animate-bounce" /> Resume
+              </a>
+
               <a href="#contact" className="px-8 py-4 font-semibold rounded-full border border-white/20 hover:border-primary/50 hover:bg-white/5 transition-colors flex items-center gap-2 hover-trigger glass">
                 Let's Talk
               </a>

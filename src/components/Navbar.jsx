@@ -55,6 +55,16 @@ const Navbar = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5 }}
+            href="/resume.pdf"
+            download="Om_Khandare_Resume.pdf"
+            className="px-5 py-2 rounded-full border border-primary text-primary text-sm font-medium hover:bg-primary hover:text-white transition-colors"
+          >
+            Resume
+          </motion.a>
+          <motion.a
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6 }}
             href="#contact"
             className="px-5 py-2 rounded-full bg-primary text-white text-sm font-medium hover:bg-primary/80 transition-colors shadow-[0_0_15px_rgba(100,50,255,0.5)]"
           >
@@ -91,6 +101,14 @@ const Navbar = () => {
                   {link.name}
                 </a>
               ))}
+              <a
+                href="/resume.pdf"
+                download="Om_Khandare_Resume.pdf"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-lg font-medium text-primary hover:text-primary/80 transition-colors"
+              >
+                Download Resume
+              </a>
             </div>
           </motion.nav>
         )}
