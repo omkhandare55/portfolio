@@ -1,4 +1,4 @@
-# Premium Portfolio - Vijay | Top 1% UI/UX
+# Premium Portfolio - Om Khandare | Top 1% UI/UX
 
 This is an ultra-modern, awwwards-inspired personal portfolio designed for a high-end, premium aesthetic. It heavily leverages **glassmorphism**, **soft glowing effects**, **smooth animations**, and **advanced layout paradigms** to immediately capture a recruiter/visitor's attention.
 
@@ -15,6 +15,14 @@ This is an ultra-modern, awwwards-inspired personal portfolio designed for a hig
 - 🌀 Preloader/Splash Screen Sequence
 - 🃏 3D Interactive Project Cards mapped to cursor position relative tracking
 - 🌌 Immersive dark theme leveraging native HSL variables for scalable glow
+
+## Customization & Content
+
+### Resume Download
+To activate the "Download Resume" functionality for recruiters:
+1. Ensure your resume document is named exactly `resume.pdf`.
+2. Place or overwrite this file in the `public/` directory (e.g. `public/resume.pdf`).
+3. The download buttons in the Hero section and Navbar will now serve your actual resume automatically.
 
 ## Setup Instructions
 1. Install dependencies:
