@@ -1,6 +1,6 @@
 # Premium Portfolio - Om Khandare | Top 1% UI/UX
 
-**🚀 Live Demo:** [https://portfolio-sable-rho-6nh0ucv79o.vercel.app](https://portfolio-sable-rho-6nh0ucv79o.vercel.app)
+**🚀 Live Demo:** [omii.me](omii.me)
 
 This is an ultra-modern, awwwards-inspired personal portfolio designed for a high-end, premium aesthetic. It heavily leverages **glassmorphism**, **soft glowing effects**, **smooth animations**, and **advanced layout paradigms** to immediately capture a recruiter/visitor's attention.
 
