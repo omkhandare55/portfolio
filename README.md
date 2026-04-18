@@ -1,6 +1,6 @@
 # Premium Portfolio - Om Khandare | Top 1% UI/UX
 
-**🚀 Live Demo:** [omii.me](omii.me)
+**🚀 Live Demo:** [omii.me](https://omii.me)
 
 This is an ultra-modern, awwwards-inspired personal portfolio designed for a high-end, premium aesthetic. It heavily leverages **glassmorphism**, **soft glowing effects**, **smooth animations**, and **advanced layout paradigms** to immediately capture a recruiter/visitor's attention.
 
@@ -41,3 +41,4 @@ To activate the "Download Resume" functionality for recruiters:
    ```
 
 Enjoy the premium experience!
+Thankyou for visite
