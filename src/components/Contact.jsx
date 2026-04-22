@@ -42,7 +42,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-x-0 bottom-0 top-1/2 bg-gradient-to-t from-primary/5 to-transparent z-[-1]" />
+      
       
       <div className="container mx-auto px-6 max-w-7xl">
         <motion.div 
@@ -54,7 +54,7 @@ const Contact = () => {
           <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">
             Let's <span className="gradient-text">Connect</span>
           </h2>
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full glow-border"></div>
+          <div className="w-24 h-1 bg-white/20 mx-auto rounded-full"></div>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-12">
@@ -96,7 +96,7 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             <form onSubmit={handleSubmit} className="glass-card p-8 md:p-10 rounded-[2rem] flex flex-col gap-6 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-3xl -z-10 rounded-full" />
+              
               
               <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium ml-1">Name</label>
@@ -140,7 +140,7 @@ const Contact = () => {
               <button 
                 type="submit" 
                 disabled={isSubmitting}
-                className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-4 rounded-xl flex items-center justify-center gap-2 transition-colors disabled:opacity-70 disabled:cursor-not-allowed hover-trigger shadow-[0_0_20px_rgba(100,50,255,0.3)] mt-2"
+                className="w-full bg-white hover:bg-white/90 text-black font-medium py-4 rounded-xl flex items-center justify-center gap-2 transition-colors disabled:opacity-70 disabled:cursor-not-allowed mt-2"
               >
                 {isSubmitting ? (
                   <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />

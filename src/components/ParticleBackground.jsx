@@ -57,7 +57,7 @@ const ParticleBackground = () => {
           
           if (dist < 100) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(100, 100, 255, ${0.1 - dist / 1000})`;
+            ctx.strokeStyle = `rgba(255, 255, 255, ${0.05 - dist / 2000})`;
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.stroke();
@@ -80,7 +80,7 @@ const ParticleBackground = () => {
   return (
     <canvas 
       ref={canvasRef} 
-      className="fixed inset-0 z-[-2] opacity-30"
+      className="fixed inset-0 z-[-2] opacity-10"
     />
   );
 };

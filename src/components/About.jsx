@@ -32,7 +32,7 @@ const About = () => {
           <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">
             About <span className="gradient-text">Me</span>
           </h2>
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full glow-border"></div>
+          <div className="w-24 h-1 bg-white/20 mx-auto rounded-full"></div>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-12 items-center">
@@ -75,7 +75,7 @@ const About = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="glass-card rounded-[2rem] p-1 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 z-0"></div>
+              <div className="absolute inset-0 bg-[#0C0C0C] z-0"></div>
               
               <div className="relative z-10 p-8">
                 <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
@@ -96,7 +96,7 @@ const About = () => {
                       </div>
                       <div className="w-full h-2 bg-background/50 rounded-full overflow-hidden border border-white/5">
                         <motion.div 
-                          className="h-full bg-gradient-to-r from-primary to-accent"
+                          className="h-full bg-white"
                           initial={{ width: 0 }}
                           whileInView={{ width: skill.percent }}
                           viewport={{ once: true }}

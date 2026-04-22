@@ -27,7 +27,7 @@ const ProjectCard = ({ project, index }) => {
           background: useMotionTemplate`
             radial-gradient(
               400px circle at ${mouseX}px ${mouseY}px,
-              rgba(100,50,255,0.15),
+              rgba(255,255,255,0.03),
               transparent 80%
             )
           `,
@@ -118,7 +118,7 @@ const Projects = () => {
           <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">
             Featured <span className="gradient-text">Projects</span>
           </h2>
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full glow-border"></div>
+          <div className="w-24 h-1 bg-white/20 mx-auto rounded-full"></div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

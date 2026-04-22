@@ -19,7 +19,7 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-24 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px] -z-10 pointer-events-none" />
+      
       
       <div className="container mx-auto px-6 max-w-7xl">
         <motion.div 
@@ -32,7 +32,7 @@ const Skills = () => {
             <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">
               Technical <span className="gradient-text">Arsenal</span>
             </h2>
-            <div className="w-24 h-1 bg-primary rounded-full glow-border"></div>
+            <div className="w-24 h-1 bg-white/20 rounded-full"></div>
           </div>
           <p className="text-muted-foreground max-w-md text-right max-md:text-left">
             A comprehensive overview of my technical capabilities and the tools I use to build modern applications.

@@ -13,7 +13,7 @@ const Achievements = () => {
     <section className="py-24 relative">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="glass-card rounded-[3rem] p-8 md:p-16 relative overflow-hidden border border-white/5">
-          <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-primary/10 via-transparent to-transparent z-0 pointer-events-none" />
+          {/* Removed AI gradient */}
           
           <div className="relative z-10">
             <motion.div 
