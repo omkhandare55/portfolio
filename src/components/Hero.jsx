@@ -33,28 +33,29 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
+          className="w-full"
         >
-          <div className="uppercase tracking-[0.2em] text-sm text-[hsl(var(--primary))] font-semibold mb-6 flex items-center justify-center gap-4">
-            <span className="w-8 h-px bg-[hsl(var(--primary))]/50"></span>
+          <div className="uppercase tracking-widest sm:tracking-[0.2em] text-xs sm:text-sm text-[hsl(var(--primary))] font-semibold mb-6 flex items-center justify-center gap-2 sm:gap-4">
+            <span className="w-4 sm:w-8 h-px bg-[hsl(var(--primary))]/50"></span>
             Software Developer
-            <span className="w-8 h-px bg-[hsl(var(--primary))]/50"></span>
+            <span className="w-4 sm:w-8 h-px bg-[hsl(var(--primary))]/50"></span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-heading mb-6 tracking-tight text-white leading-tight">
-            Engineering <span className="italic font-light text-muted-foreground mr-2">elegant</span>
-            <br className="hidden md:block"/>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold font-heading mb-6 tracking-tight text-white leading-[1.1] sm:leading-tight px-2">
+            Engineering <span className="italic font-light text-muted-foreground mr-1 sm:mr-2">elegant</span>
+            <br className="hidden sm:block"/>
             digital solutions.
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 sm:mb-12 font-light leading-relaxed px-4">
             I'm Om Khandare, a developer specializing in robust algorithms and scalable architectures. I blend clean code with intuitive design.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <a href="#projects" className="px-8 py-4 bg-white text-black font-medium text-sm tracking-wide uppercase transition-transform hover:-translate-y-1">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full px-6">
+            <a href="#projects" className="w-full sm:w-auto px-8 py-4 bg-white text-black font-medium text-sm tracking-wide uppercase transition-transform hover:-translate-y-1 rounded-sm">
               View Projects
             </a>
-            <a href="/resume.pdf" download="Om_Khandare_Resume.pdf" className="px-8 py-4 border border-white/20 text-white font-medium text-sm tracking-wide uppercase transition-colors hover:bg-white/5">
+            <a href="/resume.pdf" download="Om_Khandare_Resume.pdf" className="w-full sm:w-auto px-8 py-4 border border-white/20 text-white font-medium text-sm tracking-wide uppercase transition-colors hover:bg-white/5 rounded-sm">
               Download Resume
             </a>
           </div>
