@@ -58,7 +58,7 @@ const CustomCursor = () => {
       <div 
         className="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] max-md:hidden"
         style={{
-          background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(100, 50, 255, 0.06), transparent 40%)`
+          background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(245, 158, 11, 0.04), transparent 40%)`
         }}
       />
     </>
