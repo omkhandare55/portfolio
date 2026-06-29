@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Exclude compiled directories and configurations
+Disallow: /dist/
+Disallow: /node_modules/
+Disallow: /src/
+
+Sitemap: https://omkhandare55.github.io/portfolio/sitemap.xml

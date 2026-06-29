@@ -28,7 +28,10 @@ const Hero = () => {
             <div className="w-full h-full rounded-full overflow-hidden border border-zinc-800 bg-zinc-900/80">
               <img 
                 src="/profile.png" 
-                alt="Om Khandare" 
+                alt="Om Khandare, Software Developer Portrait" 
+                width="112"
+                height="112"
+                loading="lazy"
                 className="w-full h-full object-cover grayscale brightness-95 hover:grayscale-0 transition-all duration-300" 
                 onError={(e) => {
                   e.target.onerror = null; 
