@@ -3,7 +3,7 @@ import { motion, useMotionTemplate, useMotionValue, useInView } from 'framer-mot
 import { ExternalLink, ArrowUpRight, Sparkles, BookOpen, Leaf } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import {
-  SiReact, SiTailwindcss, SiFirebase, SiJavascript,
+  SiReact, SiTailwindcss, SiFirebase, SiJavascript, SiNodedotjs,
 } from 'react-icons/si';
 
 /* ─── PROJECT DATA ──────────────────────────────────────────────── */
