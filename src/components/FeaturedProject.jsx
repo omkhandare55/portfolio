@@ -1,419 +1,84 @@
-import React, { useRef } from 'react';
-import { motion, useInView, useMotionValue, useMotionTemplate } from 'framer-motion';
-import {
-  Trophy, ExternalLink, Zap, Shield, Users, Code2,
-  GitBranch, Layers, Lock, Terminal, CheckCircle2, ArrowRight, Star, Cpu
-} from 'lucide-react';
+import React from 'react';
 import { FaGithub } from 'react-icons/fa';
-import {
-  SiReact, SiNodedotjs, SiExpress, SiTailwindcss, SiFirebase,
-} from 'react-icons/si';
-import { VscCode } from 'react-icons/vsc';
-
-/* ─── DATA ──────────────────────────────────────────────────────────────── */
-
-const FEATURES = [
-  {
-    icon: <Lock size={22} />,
-    title: 'Role-Based Access Control',
-    desc: 'Host controls editing permissions using a mutex-style token system, preventing ghost inputs and editing collisions.',
-  },
-  {
-    icon: <Zap size={22} />,
-    title: 'Firestore Real-Time Sync',
-    desc: 'Leverages Cloud Firestore snapshot listeners to sync code modifications and participant cursors instantaneously.',
-  },
-  {
-    icon: <Users size={22} />,
-    title: 'Multi-User Rooms',
-    desc: 'Shareable room codes let teammates join collaboration rooms instantly with real-time active indicators.',
-  },
-  {
-    icon: <Terminal size={22} />,
-    title: 'Groq AI Developer Assistant',
-    desc: 'Integrated Groq LLM APIs for real-time AI code diagnostic explanation, developer help, and live debugging assistance.',
-  },
-  {
-    icon: <Code2 size={22} />,
-    title: 'Monaco Editor Engine',
-    desc: 'Uses the VS Code editor core to deliver rich syntax highlighting, code completion, and multi-language support.',
-  },
-  {
-    icon: <Shield size={22} />,
-    title: 'Conflict Resolution',
-    desc: 'Robust synchronization logic handles merge issues smoothly to guarantee a conflict-free editing environment.',
-  },
-];
-
-const TECH_STACK = [
-  { icon: <SiReact />, label: 'React.js', color: '#61DAFB' },
-  { icon: <SiNodedotjs />, label: 'Node.js', color: '#68A063' },
-  { icon: <SiExpress />, label: 'Express.js', color: '#efefef' },
-  { icon: <SiFirebase />, label: 'Firebase & Firestore', color: '#FFCA28' },
-  { icon: <VscCode />, label: 'Monaco Editor', color: '#007ACC' },
-  { icon: <Cpu size={16} />, label: 'Groq LLM API', color: '#f59e0b' },
-  { icon: <SiTailwindcss />, label: 'Tailwind CSS', color: '#38BDF8' },
-];
-
-const CONTRIBUTIONS = [
-  'Built a VS Code-inspired collaborative code editor interface using React.js and Monaco Editor.',
-  'Implemented real-time synchronization and multi-user room states using Firestore snapshot listeners.',
-  'Integrated Groq LLM APIs for inline AI-powered diagnostics, code explanation, and debugging help.',
-  'Designed host-controlled role-based access rights and mutex-style locks to block conflict inputs.',
-  'Configured secure room creation and authentication flows using Firebase Authentication APIs.',
-];
-
-/* ─── SUB-COMPONENTS ────────────────────────────────────────────────────── */
-
-const AwardBadge = () => (
-  <motion.div
-    initial={{ scale: 0.6, opacity: 0 }}
-    animate={{ scale: 1, opacity: 1 }}
-    transition={{ type: 'spring', stiffness: 260, damping: 20, delay: 0.3 }}
-    className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold tracking-wide"
-    style={{
-      background: 'linear-gradient(135deg, rgba(245,158,11,0.2) 0%, rgba(251,191,36,0.12) 100%)',
-      border: '1px solid rgba(245,158,11,0.45)',
-      color: '#fbbf24',
-    }}
-  >
-    <Trophy size={15} className="flex-shrink-0" />
-    <span>2nd Runner-Up · Technovate 2026</span>
-    <span
-      className="px-2 py-0.5 text-xs rounded-full font-bold"
-      style={{ background: 'rgba(245,158,11,0.25)', color: '#fcd34d' }}
-    >
-      SVKM Dhule
-    </span>
-  </motion.div>
-);
-
-/* Glowing card with mouse-tracking spotlight */
-const FeatureCard = ({ feature, index }) => {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const handleMouseMove = ({ currentTarget, clientX, clientY }) => {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
-      onMouseMove={handleMouseMove}
-      className="group relative rounded-2xl p-px cursor-default"
-      style={{ background: 'rgba(255,255,255,0.06)' }}
-    >
-      {/* Spotlight overlay */}
-      <motion.div
-        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{
-          background: useMotionTemplate`radial-gradient(280px circle at ${mouseX}px ${mouseY}px, rgba(245,158,11,0.13), transparent 80%)`,
-        }}
-      />
-      {/* Amber border glow on hover */}
-      <motion.div
-        className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{ border: '1px solid rgba(245,158,11,0.3)', borderRadius: 'inherit' }}
-      />
-
-      <div className="relative rounded-2xl p-5 h-full flex flex-col gap-3"
-        style={{ background: '#0d0d0d' }}>
-        <div
-          className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110"
-          style={{
-            background: 'rgba(245,158,11,0.12)',
-            border: '1px solid rgba(245,158,11,0.25)',
-            color: '#f59e0b',
-          }}
-        >
-          {feature.icon}
-        </div>
-        <h4 className="font-semibold text-sm text-white/90 group-hover:text-amber-400 transition-colors">
-          {feature.title}
-        </h4>
-        <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.45)' }}>
-          {feature.desc}
-        </p>
-      </div>
-    </motion.div>
-  );
-};
-
-const TechPill = ({ icon, label, color, index }) => (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.8 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.35, delay: index * 0.05 }}
-    whileHover={{ scale: 1.08, y: -2 }}
-    className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium"
-    style={{
-      background: 'rgba(255,255,255,0.05)',
-      border: '1px solid rgba(255,255,255,0.1)',
-      color: 'rgba(255,255,255,0.7)',
-    }}
-  >
-    <span style={{ color, fontSize: '1rem' }}>{icon}</span>
-    {label}
-  </motion.div>
-);
-
-/* ─── MAIN COMPONENT ────────────────────────────────────────────────────── */
 
 const FeaturedProject = () => {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
-
-  const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.12 } },
-  };
-
-  const fadeUp = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.25, 0.1, 0.25, 1] } },
-  };
-
   return (
-    <section
-      id="featured-project"
-      ref={sectionRef}
-      className="relative py-28 overflow-hidden"
-    >
-      {/* ── Ambient background glows ── */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 70% 40% at 15% 50%, rgba(245,158,11,0.05) 0%, transparent 70%), radial-gradient(ellipse 60% 50% at 85% 20%, rgba(251,191,36,0.04) 0%, transparent 60%)',
-        }}
-      />
-      {/* Horizontal amber line accent */}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={isInView ? { scaleX: 1 } : {}}
-        transition={{ duration: 1.1, ease: 'easeOut', delay: 0.2 }}
-        className="absolute top-0 left-0 right-0 h-px origin-left"
-        style={{ background: 'linear-gradient(90deg, transparent, rgba(245,158,11,0.5), transparent)' }}
-      />
-
-      <div className="container mx-auto px-6 max-w-7xl relative">
-
-        {/* ── Section label ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-center text-center mb-16 gap-5"
-        >
-          <div
-            className="flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest"
-            style={{
-              background: 'rgba(245,158,11,0.08)',
-              border: '1px solid rgba(245,158,11,0.2)',
-              color: '#f59e0b',
-            }}
-          >
-            <Star size={12} />
-            Featured Project
-          </div>
-
-          <AwardBadge />
-
-          <h2
-            className="text-4xl md:text-6xl font-extrabold tracking-tight"
-            style={{ fontFamily: 'Outfit, sans-serif', lineHeight: 1.1 }}
-          >
-            <span className="gradient-text">Debugra</span>
-          </h2>
-
-          <p className="max-w-xl text-sm md:text-base" style={{ color: 'rgba(255,255,255,0.5)' }}>
-            A VS Code-inspired real-time collaborative code editor with Firestore sync,
-            conflict prevention, and Groq-powered AI developer assistance.
-          </p>
-        </motion.div>
-
-        {/* ── Problem → Solution ── */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-14"
-        >
-          {[
-            {
-              label: '🔴 The Problem',
-              heading: 'Collaborative Editing is Chaos',
-              body: 'When multiple developers edit the same file simultaneously, edits collide, code gets corrupted, and no one knows whose version is "correct." Traditional pair-programming tools lack access control, making remote collaboration unreliable.',
-              borderColor: 'rgba(239,68,68,0.3)',
-              bg: 'rgba(239,68,68,0.04)',
-            },
-            {
-              label: '🟢 The Solution',
-              heading: 'Firebase Sync & Role-Based Permissions',
-              body: 'Debugra combines host-controlled role permissions (mutex-style lock) with Firestore real-time sync and custom conflict resolution. It integrates Groq LLM APIs for inline diagnostics, code explanations, and developer assistance.',
-              borderColor: 'rgba(245,158,11,0.35)',
-              bg: 'rgba(245,158,11,0.04)',
-            },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              variants={fadeUp}
-              className="rounded-2xl p-6 md:p-8 flex flex-col gap-3"
-              style={{ background: item.bg, border: `1px solid ${item.borderColor}` }}
-            >
-              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: 'rgba(255,255,255,0.35)' }}>
-                {item.label}
-              </span>
-              <h3 className="text-xl font-bold text-white/90">{item.heading}</h3>
-              <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>
-                {item.body}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* ── Key Features ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.55, delay: 0.1 }}
-          className="mb-5"
-        >
-          <div className="flex items-center gap-3 mb-6">
-            <Layers size={18} className="text-amber-400" />
-            <h3 className="text-lg font-bold text-white/80 uppercase tracking-widest text-sm">Key Features</h3>
-            <div className="flex-1 h-px" style={{ background: 'rgba(255,255,255,0.07)' }} />
-          </div>
-        </motion.div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-14">
-          {FEATURES.map((f, i) => (
-            <FeatureCard key={i} feature={f} index={i} />
-          ))}
+    <section id="featured-project" className="py-24 border-t border-zinc-900 bg-black">
+      <div className="container mx-auto px-6 max-w-4xl">
+        
+        {/* Header */}
+        <div className="mb-12">
+          <div className="font-mono text-xs text-zinc-500 uppercase tracking-widest mb-2">[ Premium Featured Project Case Study ]</div>
+          <h2 className="text-2xl sm:text-4xl font-heading font-bold text-white">Debugra: AI-Powered Collaboration</h2>
         </div>
 
-        {/* ── Tech Stack ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.55, delay: 0.15 }}
-          className="mb-14"
-        >
-          <div className="flex items-center gap-3 mb-6">
-            <GitBranch size={18} className="text-amber-400" />
-            <h3 className="text-sm font-bold text-white/80 uppercase tracking-widest">Tech Stack</h3>
-            <div className="flex-1 h-px" style={{ background: 'rgba(255,255,255,0.07)' }} />
-          </div>
-          <div className="flex flex-wrap gap-3">
-            {TECH_STACK.map((t, i) => (
-              <TechPill key={i} {...t} index={i} />
-            ))}
-          </div>
-        </motion.div>
+        {/* Introduction */}
+        <div className="space-y-6 text-sm sm:text-base text-zinc-400 leading-relaxed mb-10">
+          <p>
+            <strong>Debugra</strong> is a VS Code-inspired real-time collaborative code editor designed to enable conflict-free remote pair-programming and instant compiler diagnostics. Engineered during a 24-hour hackathon, the platform secured <strong className="text-white">2nd Runner-Up at Technovate 2026</strong>.
+          </p>
+        </div>
 
-        {/* ── My Contribution ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="rounded-2xl p-7 md:p-10 mb-12 relative overflow-hidden"
-          style={{
-            background: 'linear-gradient(135deg, rgba(245,158,11,0.06) 0%, rgba(12,12,12,1) 60%)',
-            border: '1px solid rgba(245,158,11,0.18)',
-          }}
-        >
-          {/* decorative corner glow */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -top-10 -right-10 w-52 h-52 rounded-full"
-            style={{ background: 'radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%)' }}
-          />
-          <div className="flex items-center gap-3 mb-7">
-            <CheckCircle2 size={18} className="text-amber-400 flex-shrink-0" />
-            <h3 className="text-sm font-bold text-white/80 uppercase tracking-widest">My Contribution</h3>
+        {/* Case Study Details Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          
+          {/* System Architecture */}
+          <div className="p-6 border border-zinc-800 bg-zinc-900/10">
+            <h3 className="text-xs font-bold font-mono text-white mb-4 uppercase tracking-wider">
+              // Conflict Prevention Architecture
+            </h3>
+            <p className="text-xs text-zinc-400 leading-relaxed mb-3">
+              To resolve parallel edit conflicts without introducing heavy Operational Transform overhead, Debugra implements a host-controlled mutex (token) system:
+            </p>
+            <ul className="text-xs text-zinc-500 space-y-2 list-disc pl-4">
+              <li>Hosts control edit permissions, dynamically granting/revoking write tokens.</li>
+              <li>Other active peers are set to read-only mode, blocking ghost input overrides.</li>
+              <li>Real-time cursor positions and typing focus are synced instantly.</li>
+            </ul>
           </div>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {CONTRIBUTIONS.map((c, i) => (
-              <motion.li
-                key={i}
-                initial={{ opacity: 0, x: -16 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.45, delay: 0.25 + i * 0.07 }}
-                className="flex gap-3 text-sm leading-relaxed"
-                style={{ color: 'rgba(255,255,255,0.6)' }}
-              >
-                <ArrowRight size={14} className="flex-shrink-0 mt-0.5 text-amber-500" />
-                {c}
-              </motion.li>
-            ))}
-          </ul>
-        </motion.div>
 
-        {/* ── CTA Buttons ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.55, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          {/* Live Demo */}
-          <motion.a
-            href="https://debugra.vercel.app"
-            target="_blank"
-            rel="noreferrer"
-            whileHover={{ scale: 1.04, y: -2 }}
-            whileTap={{ scale: 0.97 }}
-            className="group relative inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full font-semibold text-sm overflow-hidden hover-trigger"
-            style={{
-              background: 'linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)',
-              color: '#000',
-              boxShadow: '0 0 30px rgba(245,158,11,0.35)',
-            }}
-          >
-            {/* shimmer on hover */}
-            <span
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%)', backgroundSize: '200% 100%' }}
-            />
-            <ExternalLink size={16} className="relative z-10" />
-            <span className="relative z-10">Live Demo</span>
-          </motion.a>
+          {/* AI Integration & Synchronization */}
+          <div className="p-6 border border-zinc-800 bg-zinc-900/10">
+            <h3 className="text-xs font-bold font-mono text-white mb-4 uppercase tracking-wider">
+              // Data Sync & AI Pipeline
+            </h3>
+            <p className="text-xs text-zinc-400 leading-relaxed mb-3">
+              Built on a decoupled Firebase/Express backbone to prioritize low-latency state sharing and structured diagnostics:
+            </p>
+            <ul className="text-xs text-zinc-500 space-y-2 list-disc pl-4">
+              <li>Firestore snapshot listeners capture and distribute code buffer edits.</li>
+              <li>Integrated Groq LLM API client triggers async script debugging.</li>
+              <li>Provides developers with instant inline bugs alerts and code walkthroughs.</li>
+            </ul>
+          </div>
 
-          {/* GitHub */}
-          <motion.a
+        </div>
+
+        {/* Tech Stack Specs & Actions */}
+        <div className="p-6 border border-zinc-800 bg-zinc-900/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+          <div>
+            <span className="font-bold text-xs uppercase tracking-widest text-zinc-300 block mb-2">Technical Stack</span>
+            <div className="flex flex-wrap gap-2">
+              {['React.js', 'Node.js', 'Express.js', 'Firebase Auth', 'Firestore', 'Monaco Editor Core', 'Groq API', 'TailwindCSS'].map((tech) => (
+                <span key={tech} className="px-2 py-0.5 bg-zinc-900 text-[10px] font-mono text-zinc-500 border border-zinc-800">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <a
             href="https://github.com/omkhandare55/Debugra"
             target="_blank"
             rel="noreferrer"
-            whileHover={{ scale: 1.04, y: -2 }}
-            whileTap={{ scale: 0.97 }}
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full font-semibold text-sm hover-trigger"
-            style={{
-              background: 'rgba(255,255,255,0.05)',
-              border: '1px solid rgba(255,255,255,0.14)',
-              color: 'rgba(255,255,255,0.85)',
-            }}
+            className="px-5 py-3 border border-zinc-800 hover:border-zinc-600 text-xs font-mono font-semibold tracking-wider text-zinc-400 hover:text-white transition-colors flex items-center gap-2 flex-shrink-0"
           >
-            <FaGithub size={16} />
-            View on GitHub
-          </motion.a>
-        </motion.div>
+            <FaGithub size={14} />
+            <span>Case Study Code</span>
+          </a>
+        </div>
 
       </div>
-
-      {/* Bottom rule */}
-      <div
-        aria-hidden
-        className="absolute bottom-0 left-0 right-0 h-px"
-        style={{ background: 'linear-gradient(90deg, transparent, rgba(245,158,11,0.2), transparent)' }}
-      />
     </section>
   );
 };

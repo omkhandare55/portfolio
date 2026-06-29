@@ -7,67 +7,24 @@
 
 @layer base {
   :root {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 95%;
+    --background: 240 10% 3.9%; /* zinc-950 */
+    --foreground: 240 10% 98%; /* zinc-50 */
 
-    --card: 0 0% 9%;
-    --card-foreground: 0 0% 95%;
+    --card: 240 10% 5.9%; /* zinc-900 */
+    --card-foreground: 240 10% 98%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 240 5.9% 10%; /* zinc-800 */
+    --muted-foreground: 240 5% 64.9%; /* zinc-400 */
 
-    /* Premium Amber / Gold Theme (Warm, Classic, Non-AI) */
-    --primary: 38 92% 50%; /* #f59e0b - Amber 500 */
-    --primary-foreground: 0 0% 100%;
+    --primary: 0 0% 100%; /* solid white */
+    --primary-foreground: 240 10% 3.9%;
 
-    --accent: 43 96% 56%; /* #fbbf24 - Amber 400 */
-    --accent-foreground: 0 0% 100%;
+    --accent: 240 5% 64.9%; /* zinc-400 */
+    --accent-foreground: 240 10% 98%;
 
-    --border: 0 0% 15%;
+    --border: 240 5.9% 12%; /* zinc-800/12 */
     
-    --radius: 0.25rem; /* Sharper edges */
-  }
-
-  .theme-water {
-    --background: 215 50% 6%;
-    --foreground: 195 40% 95%;
-    --card: 215 45% 9%;
-    --card-foreground: 195 40% 95%;
-    --muted: 215 30% 14%;
-    --muted-foreground: 195 20% 60%;
-    --primary: 190 90% 50%; /* Cyan */
-    --primary-foreground: 0 0% 0%;
-    --accent: 195 85% 55%;
-    --accent-foreground: 0 0% 0%;
-    --border: 215 25% 15%;
-  }
-
-  .theme-grass {
-    --background: 140 40% 5%;
-    --foreground: 145 30% 95%;
-    --card: 140 35% 8%;
-    --card-foreground: 145 30% 95%;
-    --muted: 140 25% 12%;
-    --muted-foreground: 145 15% 60%;
-    --primary: 145 80% 45%; /* Emerald */
-    --primary-foreground: 0 0% 100%;
-    --accent: 150 75% 50%;
-    --accent-foreground: 0 0% 100%;
-    --border: 140 20% 12%;
-  }
-
-  .theme-electric {
-    --background: 45 15% 6%;
-    --foreground: 48 30% 95%;
-    --card: 45 12% 9%;
-    --card-foreground: 48 30% 95%;
-    --muted: 45 10% 14%;
-    --muted-foreground: 48 10% 60%;
-    --primary: 48 95% 50%; /* Volt Yellow */
-    --primary-foreground: 0 0% 0%;
-    --accent: 45 90% 55%;
-    --accent-foreground: 0 0% 0%;
-    --border: 45 10% 13%;
+    --radius: 0px; /* Sharp, geometric design language */
   }
 
   * {
@@ -75,102 +32,48 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit', sans-serif;
+    @apply tracking-tight font-bold text-white;
   }
 }
 
 @layer utilities {
-  .glass {
-    @apply bg-black/40 backdrop-blur-md border border-white/[0.05];
-  }
-
-  .glass-card {
-    @apply bg-[#0C0C0C] border border-white/[0.08] shadow-sm;
-  }
-
-  .text-glow {
-    text-shadow: none;
-  }
-
-  .text-glow-accent {
-    text-shadow: none;
-  }
-
-  .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))];
-  }
-
   .glow-border {
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: border-color 0.3s ease;
+    border: 1px solid hsl(var(--border));
+    transition: border-color 0.2s ease-in-out;
   }
   
   .glow-border:hover {
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: hsl(var(--muted-foreground) / 0.3);
   }
 }
-
-
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom Scrollbar */
+/* Minimalist Muted Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--background));
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted-foreground) / 0.3);
-  border-radius: 4px;
+  background: hsl(var(--muted));
+  border-radius: 0px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary) / 0.5);
-}
-
-/* Holographic Shimmer Effect for Project Cards */
-.holo-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.holo-shine {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    125deg,
-    transparent 15%,
-    rgba(255, 255, 255, 0.05) 25%,
-    rgba(255, 255, 255, 0.15) 35%,
-    rgba(255, 255, 255, 0.3) 45%,
-    rgba(255, 255, 255, 0.15) 55%,
-    rgba(255, 255, 255, 0.05) 65%,
-    transparent 75%
-  );
-  background-size: 250% 250%;
-  pointer-events: none;
-  mix-blend-mode: color-dodge;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 2;
-}
-
-.holo-card:hover .holo-shine {
-  opacity: 0.85;
+  background: hsl(var(--muted-foreground) / 0.4);
 }

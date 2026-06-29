@@ -1,15 +1,14 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Heart, ArrowUpRight } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { SiLeetcode, SiCodechef } from 'react-icons/si';
 
 const SOCIALS = [
-  { icon: <FaGithub size={18} />, href: 'https://github.com/omkhandare55', label: 'GitHub' },
-  { icon: <FaLinkedin size={18} />, href: 'https://www.linkedin.com/in/om-khandare-6b98a432a/', label: 'LinkedIn' },
-  { icon: <SiLeetcode size={16} />, href: 'https://leetcode.com/u/OP_GAMING55/', label: 'LeetCode' },
-  { icon: <SiCodechef size={16} />, href: 'https://www.codechef.com/users/rcp_fy_24616', label: 'CodeChef' },
-  { icon: <Mail size={18} />, href: 'mailto:omkh4242@gmail.com', label: 'Email' },
+  { icon: <FaGithub size={16} />, href: 'https://github.com/omkhandare55', label: 'GitHub' },
+  { icon: <FaLinkedin size={16} />, href: 'https://www.linkedin.com/in/om-khandare-6b98a432a/', label: 'LinkedIn' },
+  { icon: <SiLeetcode size={14} />, href: 'https://leetcode.com/u/OP_GAMING55/', label: 'LeetCode' },
+  { icon: <SiCodechef size={14} />, href: 'https://www.codechef.com/users/rcp_fy_24616', label: 'CodeChef' },
+  { icon: <Mail size={16} />, href: 'mailto:omkh4242@gmail.com', label: 'Email' },
 ];
 
 const NAV_LINKS = [
@@ -24,92 +23,61 @@ const NAV_LINKS = [
 
 const Footer = () => {
   return (
-    <footer className="relative z-10 border-t border-white/[0.06] bg-[#0A0A0A]">
-      {/* Amber accent line */}
-      <div
-        aria-hidden
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: 'linear-gradient(90deg, transparent, rgba(245,158,11,0.3), transparent)' }}
-      />
-
-      <div className="container mx-auto px-6 max-w-7xl py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-12">
-          {/* Brand Column */}
-          <div className="space-y-4">
-            <a href="#home" className="inline-block text-2xl font-bold font-heading text-white tracking-wider hover:opacity-80 transition-opacity">
-              OM.
-            </a>
-            <p className="text-sm leading-relaxed max-w-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
-              Software Developer specializing in robust algorithms and scalable web architectures. Always building, always learning.
+    <footer className="border-t border-zinc-900 bg-black py-12">
+      <div className="container mx-auto px-6 max-w-4xl">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+          
+          {/* Left: Brand info */}
+          <div className="space-y-2">
+            <span className="font-heading font-bold text-white tracking-widest text-lg">
+              OM KHANDARE
+            </span>
+            <p className="text-xs text-zinc-500 max-w-xs">
+              Software Developer focused on algorithmic performance and scalable system architectures.
             </p>
           </div>
 
-          {/* Navigation Column */}
-          <div className="space-y-4">
-            <h4 className="text-sm font-bold text-white/80 uppercase tracking-widest">Quick Links</h4>
-            <nav className="grid grid-cols-2 gap-2">
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-sm font-medium py-1 transition-colors hover-trigger flex items-center gap-1 group"
-                  style={{ color: 'rgba(255,255,255,0.4)' }}
+          {/* Center/Right: Navigation and Socials */}
+          <div className="flex flex-col gap-6 md:items-end">
+            {/* Nav list */}
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs font-mono text-zinc-500">
+              {NAV_LINKS.map((link, i) => (
+                <a 
+                  key={i} 
+                  href={link.href} 
+                  className="hover:text-white transition-colors"
                 >
-                  <span className="group-hover:text-white transition-colors">{link.name}</span>
-                  <ArrowUpRight size={10} className="opacity-0 group-hover:opacity-100 transition-opacity text-amber-400" />
+                  {link.name}
                 </a>
               ))}
-            </nav>
-          </div>
+            </div>
 
-          {/* Social Column */}
-          <div className="space-y-4">
-            <h4 className="text-sm font-bold text-white/80 uppercase tracking-widest">Connect</h4>
-            <div className="flex flex-wrap gap-2">
-              {SOCIALS.map((s, i) => (
-                <motion.a
+            {/* Social list */}
+            <div className="flex gap-4">
+              {SOCIALS.map((soc, i) => (
+                <a
                   key={i}
-                  href={s.href}
+                  href={soc.href}
                   target="_blank"
                   rel="noreferrer"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 hover-trigger"
-                  style={{
-                    background: 'rgba(255,255,255,0.04)',
-                    border: '1px solid rgba(255,255,255,0.08)',
-                    color: 'rgba(255,255,255,0.5)',
-                  }}
-                  title={s.label}
+                  className="text-zinc-500 hover:text-white transition-colors"
+                  title={soc.label}
                 >
-                  {s.icon}
-                </motion.a>
+                  {soc.icon}
+                </a>
               ))}
             </div>
-            <p className="text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>
-              Feel free to reach out — I'm always open to new opportunities!
-            </p>
+
           </div>
+
         </div>
 
-        {/* Bottom bar */}
-        <div
-          className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
-          style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
-        >
-          <p className="text-xs flex items-center gap-1.5" style={{ color: 'rgba(255,255,255,0.3)' }}>
-            &copy; {new Date().getFullYear()} Om Khandare. Built with
-            <Heart size={12} className="text-amber-500" fill="currentColor" />
-            using React & Tailwind
-          </p>
-          <div className="flex gap-4 text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>
-            <span>Nandurbar, India</span>
-            <span>·</span>
-            <a href="mailto:omkh4242@gmail.com" className="hover:text-amber-400 transition-colors">
-              omkh4242@gmail.com
-            </a>
-          </div>
+        {/* Bottom copyright bar */}
+        <div className="pt-8 mt-8 border-t border-zinc-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] font-mono text-zinc-600">
+          <span>&copy; {new Date().getFullYear()} Om Khandare. All rights reserved.</span>
+          <span>Nandurbar, Maharashtra, India</span>
         </div>
+
       </div>
     </footer>
   );
