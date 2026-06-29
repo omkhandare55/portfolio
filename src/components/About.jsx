@@ -1,58 +1,77 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { Shield, Cpu, Terminal } from 'lucide-react';
 
 const About = () => {
   return (
-    <section id="about" className="py-24 border-t border-zinc-900 bg-black">
-      <div className="container mx-auto px-6 max-w-4xl">
+    <section id="about" className="py-28 border-t border-zinc-900 bg-background relative overflow-hidden">
+      
+      {/* Accent glow behind profile text */}
+      <div 
+        aria-hidden 
+        className="pointer-events-none absolute bottom-0 right-1/4 w-[350px] h-[350px] rounded-full opacity-[0.02] blur-[100px]"
+        style={{ background: 'radial-gradient(circle, #EA580C 0%, transparent 80%)' }}
+      />
+
+      <div className="container mx-auto px-6 max-w-4xl relative z-10">
         
         {/* Header */}
-        <div className="mb-12">
-          <div className="font-mono text-xs text-zinc-500 uppercase tracking-widest mb-2">[ About & Background ]</div>
-          <h2 className="text-2xl sm:text-4xl font-heading font-bold text-white">Profile & Competencies</h2>
+        <div className="mb-14">
+          <div className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-3 flex items-center gap-2 select-none">
+            <span className="w-1.5 h-1.5 bg-[hsl(var(--accent))] rounded-full" />
+            [ Profile & Background ]
+          </div>
+          <h2 className="text-2xl sm:text-4xl font-heading font-bold text-white tracking-tight">Competency & Background</h2>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-10">
-          {/* Main Story Column */}
-          <div className="md:w-3/5 space-y-6 text-sm sm:text-base text-zinc-400 leading-relaxed">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 items-start">
+          
+          {/* Main Story Column (3/5 width) */}
+          <div className="md:col-span-3 space-y-6 text-sm sm:text-base text-zinc-400 leading-relaxed font-light">
             <p>
-              I am a software developer with a primary focus on <span className="text-white font-medium">Java, Data Structures & Algorithms, and robust web engineering</span>. Currently pursuing a Bachelor of Technology in Information Technology at R. C. Patel Institute of Technology, Shirpur.
+              I am an IT student at R. C. Patel Institute of Technology, Shirpur, specializing in <span className="text-white font-medium">Java, Data Structures & Algorithms, and robust web engineering</span>.
             </p>
             <p>
-              My coding philosophy centers on simplicity and runtime efficiency. I spend my time solving complex algorithmic challenges, analyzing system complexities, and architecting modular full-stack codebases.
+              My development philosophy focuses on modular complexity management and runtime efficiency. I spend my time solving algorithmic problems, refining backend routing safety, and implementing clean browser-facing interfaces.
             </p>
             <p>
-              As the Head of the Bytecraft Club, I coordinate technical workshops and mentor peers in web architectures and software paradigms, fostering a strong collaborative environment.
+              Serving as the Head of the Bytecraft Club, I coordinate technical workshops and bootcamps, helping students transition from core logic foundations to actual software deployments.
             </p>
           </div>
 
-          {/* Competency areas block */}
-          <div className="md:w-2/5 flex flex-col gap-4">
+          {/* Competency boxes column (2/5 width) */}
+          <div className="md:col-span-2 flex flex-col gap-4">
             {[
               {
-                title: 'Data Structures & Algorithms',
-                desc: 'Highly active in competitive programming with 2,500+ algorithm challenges completed across LeetCode and CodeChef.',
+                icon: <Terminal size={16} className="text-[hsl(var(--primary))]" />,
+                title: 'Data Structures & Algos',
+                desc: 'Highly active in competitive coding with 2,500+ solved challenges across LeetCode & CodeChef.',
               },
               {
-                title: 'Full-Stack Development',
-                desc: 'Building responsive browser interfaces and secure server environments using React, Node.js, Express, and Firebase.',
+                icon: <Cpu size={16} className="text-[hsl(var(--accent))]" />,
+                title: 'Scalable Backend Sync',
+                desc: 'Building Express API layers, Firestore synchronizers, and clustered master-worker servers.',
               },
               {
-                title: 'Engineering Core',
-                desc: 'Strong foundation in computer science fundamentals: DBMS, Operating Systems, Computer Networks, and Object-Oriented Design.',
+                icon: <Shield size={16} className="text-zinc-400" />,
+                title: 'Computer Science Core',
+                desc: 'Deep study of operating system processes, database optimizations, and net protocols.',
               },
             ].map((item, i) => (
               <div 
                 key={i} 
-                className="p-5 border border-zinc-800 bg-zinc-900/30 rounded-none transition-colors hover:border-zinc-700"
+                className="premium-card p-5 hover:border-[hsl(var(--accent))]/30 transition-all duration-300"
               >
-                <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white mb-2">
-                  // {item.title}
-                </h3>
-                <p className="text-xs text-zinc-400 leading-relaxed">{item.desc}</p>
+                <div className="flex items-center gap-2.5 mb-2 select-none">
+                  {item.icon}
+                  <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
+                    {item.title}
+                  </h3>
+                </div>
+                <p className="text-xs text-zinc-400 leading-relaxed font-light">{item.desc}</p>
               </div>
             ))}
           </div>
+
         </div>
 
       </div>

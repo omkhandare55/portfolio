@@ -7,24 +7,24 @@
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%; /* zinc-950 */
+    --background: 240 10% 5.5%; /* #0C0C0E - Obsidian Charcoal background */
     --foreground: 240 10% 98%; /* zinc-50 */
 
-    --card: 240 10% 5.9%; /* zinc-900 */
+    --card: 240 8% 8.5%; /* #121216 - Obsidian Slate card background */
     --card-foreground: 240 10% 98%;
 
-    --muted: 240 5.9% 10%; /* zinc-800 */
-    --muted-foreground: 240 5% 64.9%; /* zinc-400 */
+    --muted: 240 5.9% 13%; /* zinc-900 border / background components */
+    --muted-foreground: 240 5% 65%; /* slate-400 */
 
-    --primary: 0 0% 100%; /* solid white */
+    --primary: 38 92% 50%; /* #F59E0B - Amber Gold */
     --primary-foreground: 240 10% 3.9%;
 
-    --accent: 240 5% 64.9%; /* zinc-400 */
+    --accent: 25 95% 45%; /* #EA580C - Copper/Orange secondary accent */
     --accent-foreground: 240 10% 98%;
 
-    --border: 240 5.9% 12%; /* zinc-800/12 */
+    --border: 240 6% 12.5%; /* border lines */
     
-    --radius: 0px; /* Sharp, geometric design language */
+    --radius: 1rem; /* Consistent rounded-2xl geometry */
   }
 
   * {
@@ -44,14 +44,21 @@
 }
 
 @layer utilities {
-  .glow-border {
-    position: relative;
-    border: 1px solid hsl(var(--border));
-    transition: border-color 0.2s ease-in-out;
+  .premium-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, rgba(255,255,255,0) 100%), #121216;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px -15px rgba(0,0,0,0.6), inset 0 1px 0 0 rgba(255,255,255,0.02);
+    border-radius: 1rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
   
-  .glow-border:hover {
-    border-color: hsl(var(--muted-foreground) / 0.3);
+  .premium-card:hover {
+    border-color: rgba(245, 158, 11, 0.2);
+    box-shadow: 0 20px 40px -20px rgba(0,0,0,0.8), inset 0 1px 0 0 rgba(255,255,255,0.04);
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-200 to-[hsl(var(--primary))];
   }
 }
 
@@ -59,21 +66,21 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Minimalist Muted Scrollbar */
+/* Minimalist Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: hsl(var(--background));
 }
 
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--muted));
-  border-radius: 0px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground) / 0.4);
+  background: hsl(var(--primary) / 0.3);
 }
