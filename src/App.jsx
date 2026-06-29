@@ -5,6 +5,7 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import FeaturedProject from './components/FeaturedProject';
+import Experience from './components/Experience';
 import Achievements from './components/Achievements';
 import Contact from './components/Contact';
 import Navbar from './components/Navbar';
@@ -47,6 +48,7 @@ function App() {
               <Skills />
               <Projects />
               <FeaturedProject />
+              <Experience />
               <Achievements />
               <Contact />
             </main>

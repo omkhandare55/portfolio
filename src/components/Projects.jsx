@@ -12,14 +12,26 @@ const projects = [
   {
     title: 'NoteFlow',
     description:
-      'A modern, AI-powered note-taking application. Features include secure Google Authentication, Markdown support, AI-driven summarization, Flashcard generation, and Cloud Storage.',
-    tags: ['React 18', 'TailwindCSS', 'Firebase', 'OpenAI API'],
+      'An AI-powered note management platform inspired by Notion. Implements secure Google Auth, Markdown support, AI-driven summarization, flashcard generation, and Firestore synchronization. Secured 2nd Runner-Up at Technovate 2026.',
+    tags: ['React.js', 'TailwindCSS', 'Firebase', 'OpenAI API'],
     icons: [<SiReact key="r" />, <SiTailwindcss key="t" />, <SiFirebase key="f" />],
     github: 'https://github.com/omkhandare55/Notes_App.git',
     live: 'https://notes-app-five-swart-56.vercel.app',
     accent: '#f59e0b',
     emoji: '📝',
     heroIcon: <Sparkles size={48} />,
+  },
+  {
+    title: 'Election Education Assistant',
+    description:
+      'An ultra-secure, Google Gemini-powered educational platform designed to inform voters. Built with a clustered Next.js/Express architecture, Firebase, Helmet security layers, and Supertest test suites. Deployed on Google Cloud Run.',
+    tags: ['Next.js', 'Gemini AI', 'Express.js', 'Firebase', 'Jest'],
+    icons: [<SiReact key="nx" />, <SiNodedotjs key="nd" />, <SiFirebase key="fb" />],
+    github: 'https://github.com/omkhandare55', // Or keep standard profile link
+    live: 'https://election-assistant-9504743892.us-central1.run.app',
+    accent: '#fbbf24',
+    emoji: '🗳️',
+    heroIcon: <BookOpen size={48} />,
   },
   {
     title: 'CPU Scheduling Simulator',
@@ -29,21 +41,9 @@ const projects = [
     icons: [<SiJavascript key="j" />],
     github: 'https://github.com/omkhandare55/CPU-Scheduling-Simulator.git',
     live: '#',
-    accent: '#fbbf24',
-    emoji: '⚙️',
-    heroIcon: <BookOpen size={48} />,
-  },
-  {
-    title: 'EcoLearn',
-    description:
-      'A gamified environmental education platform promoting sustainability. Features interactive modules, real-world activity tracking, and a comprehensive badge/reward system.',
-    tags: ['JavaScript', 'HTML5/CSS3', 'Gamification', 'EdTech'],
-    icons: [<SiJavascript key="j" />],
-    github: 'https://github.com/omkhandare55/EcoLearn.git',
-    live: '#',
     accent: '#d97706',
-    emoji: '🌱',
-    heroIcon: <Leaf size={48} />,
+    emoji: '⚙️',
+    heroIcon: <Leaf size={48} />, // Keep standard leaf/gear icon
   },
 ];
 

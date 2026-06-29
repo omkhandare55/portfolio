@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
 import { motion, useInView, useMotionValue, useMotionTemplate } from 'framer-motion';
 import {
-  SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiTailwindcss,
-  SiNodedotjs, SiGit, SiFigma, SiVite, SiRedux,
-  SiMongodb, SiFirebase,
+  SiJavascript, SiReact, SiNodedotjs, SiGit, SiVite,
+  SiFirebase, SiPython, SiExpress, SiPostman,
 } from 'react-icons/si';
-import { FaJava, FaHtml5, FaCss3Alt, FaDatabase } from 'react-icons/fa';
-import { Code2, Server, Wrench, Sparkles } from 'lucide-react';
+import { VscCode } from 'react-icons/vsc';
+import { FaJava, FaHtml5, FaCss3Alt, FaDatabase, FaCode } from 'react-icons/fa';
+import { Code2, Server, Wrench, Sparkles, BookOpen } from 'lucide-react';
 
 /* ─── DATA ──────────────────────────────────────────────────────────── */
 
@@ -17,42 +17,39 @@ const categories = [
     accent: '#f59e0b',
     skills: [
       { name: 'Java', icon: <FaJava />, level: 90 },
+      { name: 'Python', icon: <SiPython />, level: 85 },
       { name: 'JavaScript (ES6+)', icon: <SiJavascript />, level: 88 },
-      { name: 'TypeScript', icon: <SiTypescript />, level: 75 },
-      { name: 'HTML5', icon: <FaHtml5 />, level: 95 },
-      { name: 'CSS3', icon: <FaCss3Alt />, level: 90 },
-      { name: 'SQL', icon: <FaDatabase />, level: 78 },
+      { name: 'C', icon: <FaCode />, level: 80 },
     ],
   },
   {
-    title: 'Frontend Stack',
+    title: 'Frontend & Backend Stack',
     icon: <Sparkles size={20} />,
     accent: '#fbbf24',
     skills: [
       { name: 'React.js', icon: <SiReact />, level: 92 },
-      { name: 'Next.js', icon: <SiNextdotjs />, level: 72 },
-      { name: 'Redux', icon: <SiRedux />, level: 80 },
-      { name: 'Tailwind CSS', icon: <SiTailwindcss />, level: 93 },
-      { name: 'Framer Motion', icon: <SiReact />, level: 85 },
+      { name: 'HTML5 / CSS3', icon: <FaHtml5 />, level: 95 },
+      { name: 'Vite', icon: <SiVite />, level: 90 },
+      { name: 'Node.js', icon: <SiNodedotjs />, level: 82 },
+      { name: 'Express.js', icon: <SiExpress />, level: 80 },
+      { name: 'REST APIs', icon: <Server size={16} />, level: 88 },
     ],
   },
   {
-    title: 'Tools & Backend',
+    title: 'Database, Tools & CS Core',
     icon: <Wrench size={20} />,
     accent: '#d97706',
     skills: [
+      { name: 'Firebase & Firestore', icon: <SiFirebase />, level: 85 },
       { name: 'Git & GitHub', icon: <SiGit />, level: 88 },
-      { name: 'Node.js', icon: <SiNodedotjs />, level: 82 },
-      { name: 'MongoDB', icon: <SiMongodb />, level: 75 },
-      { name: 'Firebase', icon: <SiFirebase />, level: 78 },
-      { name: 'Vite', icon: <SiVite />, level: 90 },
-      { name: 'Figma', icon: <SiFigma />, level: 70 },
-      { name: 'REST APIs', icon: <Server size={16} />, level: 88 },
+      { name: 'VS Code & Postman', icon: <VscCode />, level: 90 },
+      { name: 'Data Structures & Algorithms', icon: <BookOpen size={16} />, level: 90 },
+      { name: 'Core CS (OOP, DBMS, OS, CN)', icon: <FaDatabase />, level: 85 },
     ],
   },
 ];
 
-const LEARNING = ['Docker', 'AWS', 'GraphQL', 'Prisma', 'System Design'];
+const LEARNING = ['TypeScript', 'Next.js', 'Docker', 'AWS', 'System Design'];
 
 /* ─── SkillPill with animated bar ─────────────────────────────────── */
 

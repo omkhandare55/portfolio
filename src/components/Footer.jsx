@@ -6,10 +6,10 @@ import { SiLeetcode, SiCodechef } from 'react-icons/si';
 
 const SOCIALS = [
   { icon: <FaGithub size={18} />, href: 'https://github.com/omkhandare55', label: 'GitHub' },
-  { icon: <FaLinkedin size={18} />, href: 'https://www.linkedin.com/in/omkhandare55/', label: 'LinkedIn' },
+  { icon: <FaLinkedin size={18} />, href: 'https://www.linkedin.com/in/om-khandare-6b98a432a/', label: 'LinkedIn' },
   { icon: <SiLeetcode size={16} />, href: 'https://leetcode.com/u/OP_GAMING55/', label: 'LeetCode' },
   { icon: <SiCodechef size={16} />, href: 'https://www.codechef.com/users/rcp_fy_24616', label: 'CodeChef' },
-  { icon: <Mail size={18} />, href: 'mailto:omkh4242g@gmail.com', label: 'Email' },
+  { icon: <Mail size={18} />, href: 'mailto:omkh4242@gmail.com', label: 'Email' },
 ];
 
 const NAV_LINKS = [
@@ -18,6 +18,7 @@ const NAV_LINKS = [
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
   { name: 'Debugra', href: '#featured-project' },
+  { name: 'Experience', href: '#experience' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -104,8 +105,8 @@ const Footer = () => {
           <div className="flex gap-4 text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>
             <span>Nandurbar, India</span>
             <span>·</span>
-            <a href="mailto:omkh4242g@gmail.com" className="hover:text-amber-400 transition-colors">
-              omkh4242g@gmail.com
+            <a href="mailto:omkh4242@gmail.com" className="hover:text-amber-400 transition-colors">
+              omkh4242@gmail.com
             </a>
           </div>
         </div>

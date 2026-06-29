@@ -2,13 +2,11 @@ import React, { useRef } from 'react';
 import { motion, useInView, useMotionValue, useMotionTemplate } from 'framer-motion';
 import {
   Trophy, ExternalLink, Zap, Shield, Users, Code2,
-  GitBranch, Layers, Lock, Terminal, CheckCircle2, ArrowRight, Star
+  GitBranch, Layers, Lock, Terminal, CheckCircle2, ArrowRight, Star, Cpu
 } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import {
-  SiReact, SiNodedotjs, SiSocketdotio, SiMongodb,
-  SiExpress, SiJsonwebtokens, SiTailwindcss, SiVercel,
-  SiRedis,
+  SiReact, SiNodedotjs, SiExpress, SiTailwindcss, SiFirebase,
 } from 'react-icons/si';
 import { VscCode } from 'react-icons/vsc';
 
@@ -17,56 +15,52 @@ import { VscCode } from 'react-icons/vsc';
 const FEATURES = [
   {
     icon: <Lock size={22} />,
-    title: 'Role-Based Editing',
-    desc: 'Host controls who types — mutex-style permission system prevents ghost edits and merge conflicts in real time.',
+    title: 'Role-Based Access Control',
+    desc: 'Host controls editing permissions using a mutex-style token system, preventing ghost inputs and editing collisions.',
   },
   {
     icon: <Zap size={22} />,
-    title: 'Live Conflict Prevention',
-    desc: 'Operational-transform logic keeps every participant\u2019s view in sync with zero edit collision.',
+    title: 'Firestore Real-Time Sync',
+    desc: 'Leverages Cloud Firestore snapshot listeners to sync code modifications and participant cursors instantaneously.',
   },
   {
     icon: <Users size={22} />,
     title: 'Multi-User Rooms',
-    desc: 'Shareable room codes let teammates join instantly. Presence indicators show who\u2019s watching vs. editing.',
+    desc: 'Shareable room codes let teammates join collaboration rooms instantly with real-time active indicators.',
   },
   {
     icon: <Terminal size={22} />,
-    title: 'In-Browser Compiler',
-    desc: 'Execute code directly in the editor with real-time output — powered by Wandbox API across 10+ languages.',
+    title: 'Groq AI Developer Assistant',
+    desc: 'Integrated Groq LLM APIs for real-time AI code diagnostic explanation, developer help, and live debugging assistance.',
   },
   {
     icon: <Code2 size={22} />,
-    title: 'Monaco Editor Core',
-    desc: 'The same engine powering VS Code — syntax highlighting, IntelliSense, and multi-language support baked in.',
+    title: 'Monaco Editor Engine',
+    desc: 'Uses the VS Code editor core to deliver rich syntax highlighting, code completion, and multi-language support.',
   },
   {
     icon: <Shield size={22} />,
-    title: 'JWT Auth & Sessions',
-    desc: 'Secure room creation with token-based auth. Only authenticated hosts can grant or revoke edit rights.',
+    title: 'Conflict Resolution',
+    desc: 'Robust synchronization logic handles merge issues smoothly to guarantee a conflict-free editing environment.',
   },
 ];
 
 const TECH_STACK = [
-  { icon: <SiReact />, label: 'React 19', color: '#61DAFB' },
+  { icon: <SiReact />, label: 'React.js', color: '#61DAFB' },
   { icon: <SiNodedotjs />, label: 'Node.js', color: '#68A063' },
-  { icon: <SiSocketdotio />, label: 'Socket.IO', color: '#ffffff' },
-  { icon: <SiMongodb />, label: 'MongoDB', color: '#47A248' },
-  { icon: <SiExpress />, label: 'Express', color: '#efefef' },
-  { icon: <SiJsonwebtokens />, label: 'JWT', color: '#d63aff' },
+  { icon: <SiExpress />, label: 'Express.js', color: '#efefef' },
+  { icon: <SiFirebase />, label: 'Firebase & Firestore', color: '#FFCA28' },
   { icon: <VscCode />, label: 'Monaco Editor', color: '#007ACC' },
+  { icon: <Cpu size={16} />, label: 'Groq LLM API', color: '#f59e0b' },
   { icon: <SiTailwindcss />, label: 'Tailwind CSS', color: '#38BDF8' },
-  { icon: <SiVercel />, label: 'Vercel', color: '#ffffff' },
-  { icon: <SiRedis />, label: 'Redis', color: '#FF4438' },
 ];
 
 const CONTRIBUTIONS = [
-  'Designed the full permission architecture — role assignment, lock/unlock flow, and host-only controls.',
-  'Built the Socket.IO event bus for real-time code sync and cursor broadcasting across all peers.',
-  'Implemented the JWT auth system securing room creation and join flows end-to-end.',
-  'Integrated Monaco Editor with live operational-transform diffing for conflict-free co-editing.',
-  'Architected the in-browser compiler pipeline with multi-language support via Wandbox API.',
-  'Led mobile-responsive refactor using Bootstrap 5 tab-layout and thumb-friendly bottom nav.',
+  'Built a VS Code-inspired collaborative code editor interface using React.js and Monaco Editor.',
+  'Implemented real-time synchronization and multi-user room states using Firestore snapshot listeners.',
+  'Integrated Groq LLM APIs for inline AI-powered diagnostics, code explanation, and debugging help.',
+  'Designed host-controlled role-based access rights and mutex-style locks to block conflict inputs.',
+  'Configured secure room creation and authentication flows using Firebase Authentication APIs.',
 ];
 
 /* ─── SUB-COMPONENTS ────────────────────────────────────────────────────── */
@@ -84,12 +78,12 @@ const AwardBadge = () => (
     }}
   >
     <Trophy size={15} className="flex-shrink-0" />
-    <span>2nd Runner-Up · Hack-Heist Hackathon</span>
+    <span>2nd Runner-Up · Technovate 2026</span>
     <span
       className="px-2 py-0.5 text-xs rounded-full font-bold"
       style={{ background: 'rgba(245,158,11,0.25)', color: '#fcd34d' }}
     >
-      ChaiCode Sponsored
+      SVKM Dhule
     </span>
   </motion.div>
 );
@@ -241,8 +235,8 @@ const FeaturedProject = () => {
           </h2>
 
           <p className="max-w-xl text-sm md:text-base" style={{ color: 'rgba(255,255,255,0.5)' }}>
-            A real-time collaborative coding platform engineered to eliminate merge conflicts
-            through role-based editing permissions — built under 24 hours at Hack-Heist.
+            A VS Code-inspired real-time collaborative code editor with Firestore sync,
+            conflict prevention, and Groq-powered AI developer assistance.
           </p>
         </motion.div>
 
@@ -263,8 +257,8 @@ const FeaturedProject = () => {
             },
             {
               label: '🟢 The Solution',
-              heading: 'Role-Based Edit Permissions',
-              body: 'Debugra introduces a host-controlled mutex system — only one editor at a time, chosen by the host. Real-time presence indicators, operational-transform sync, and JWT-secured rooms make collaboration safe, predictable, and production-grade.',
+              heading: 'Firebase Sync & Role-Based Permissions',
+              body: 'Debugra combines host-controlled role permissions (mutex-style lock) with Firestore real-time sync and custom conflict resolution. It integrates Groq LLM APIs for inline diagnostics, code explanations, and developer assistance.',
               borderColor: 'rgba(245,158,11,0.35)',
               bg: 'rgba(245,158,11,0.04)',
             },
