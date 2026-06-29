@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
-const Navbar = () => {
+const Navbar = ({ theme = 'fire', setTheme = () => {} }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -53,6 +53,14 @@ const Navbar = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-white transition-all group-hover:w-full" />
             </motion.a>
           ))}
+          
+          {/* Quick theme switcher dots */}
+          <div className="flex gap-2 items-center bg-white/5 border border-white/10 rounded-full px-3 py-1.5 select-none mr-2">
+            <button onClick={() => setTheme('fire')} className={`w-3.5 h-3.5 rounded-full transition-transform hover:scale-125 ${theme === 'fire' ? 'border border-white scale-110' : 'opacity-60'}`} style={{ backgroundColor: '#f59e0b' }} title="Fire Type" />
+            <button onClick={() => setTheme('water')} className={`w-3.5 h-3.5 rounded-full transition-transform hover:scale-125 ${theme === 'water' ? 'border border-white scale-110' : 'opacity-60'}`} style={{ backgroundColor: '#06b6d4' }} title="Water Type" />
+            <button onClick={() => setTheme('grass')} className={`w-3.5 h-3.5 rounded-full transition-transform hover:scale-125 ${theme === 'grass' ? 'border border-white scale-110' : 'opacity-60'}`} style={{ backgroundColor: '#10b981' }} title="Grass Type" />
+            <button onClick={() => setTheme('electric')} className={`w-3.5 h-3.5 rounded-full transition-transform hover:scale-125 ${theme === 'electric' ? 'border border-white scale-110' : 'opacity-60'}`} style={{ backgroundColor: '#eab308' }} title="Electric Type" />
+          </div>
           <motion.a
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}

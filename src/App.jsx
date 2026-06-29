@@ -16,6 +16,7 @@ import ScrollProgress from './components/ScrollProgress';
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [theme, setTheme] = useState('fire'); // 'fire' | 'water' | 'grass' | 'electric'
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -24,8 +25,10 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  const themeClass = theme === 'fire' ? '' : `theme-${theme}`;
+
   return (
-    <div className="relative min-h-screen selection:bg-primary/30 selection:text-primary-foreground">
+    <div className={`relative min-h-screen selection:bg-primary/30 selection:text-primary-foreground ${themeClass}`}>
       <CustomCursor />
       <ScrollProgress />
       
@@ -40,13 +43,13 @@ function App() {
             transition={{ duration: 0.8 }}
             className="flex flex-col min-h-screen"
           >
-            <ParticleBackground />
-            <Navbar />
+            <ParticleBackground theme={theme} />
+            <Navbar theme={theme} setTheme={setTheme} />
             <main className="flex-grow z-10">
-              <Hero />
+              <Hero theme={theme} setTheme={setTheme} />
               <About />
               <Skills />
-              <Projects />
+              <Projects theme={theme} />
               <FeaturedProject />
               <Experience />
               <Achievements />

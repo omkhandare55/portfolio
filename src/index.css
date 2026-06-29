@@ -28,6 +28,48 @@
     --radius: 0.25rem; /* Sharper edges */
   }
 
+  .theme-water {
+    --background: 215 50% 6%;
+    --foreground: 195 40% 95%;
+    --card: 215 45% 9%;
+    --card-foreground: 195 40% 95%;
+    --muted: 215 30% 14%;
+    --muted-foreground: 195 20% 60%;
+    --primary: 190 90% 50%; /* Cyan */
+    --primary-foreground: 0 0% 0%;
+    --accent: 195 85% 55%;
+    --accent-foreground: 0 0% 0%;
+    --border: 215 25% 15%;
+  }
+
+  .theme-grass {
+    --background: 140 40% 5%;
+    --foreground: 145 30% 95%;
+    --card: 140 35% 8%;
+    --card-foreground: 145 30% 95%;
+    --muted: 140 25% 12%;
+    --muted-foreground: 145 15% 60%;
+    --primary: 145 80% 45%; /* Emerald */
+    --primary-foreground: 0 0% 100%;
+    --accent: 150 75% 50%;
+    --accent-foreground: 0 0% 100%;
+    --border: 140 20% 12%;
+  }
+
+  .theme-electric {
+    --background: 45 15% 6%;
+    --foreground: 48 30% 95%;
+    --card: 45 12% 9%;
+    --card-foreground: 48 30% 95%;
+    --muted: 45 10% 14%;
+    --muted-foreground: 48 10% 60%;
+    --primary: 48 95% 50%; /* Volt Yellow */
+    --primary-foreground: 0 0% 0%;
+    --accent: 45 90% 55%;
+    --accent-foreground: 0 0% 0%;
+    --border: 45 10% 13%;
+  }
+
   * {
     @apply border-border;
   }
@@ -97,4 +139,38 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--primary) / 0.5);
+}
+
+/* Holographic Shimmer Effect for Project Cards */
+.holo-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.holo-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    125deg,
+    transparent 15%,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.15) 35%,
+    rgba(255, 255, 255, 0.3) 45%,
+    rgba(255, 255, 255, 0.15) 55%,
+    rgba(255, 255, 255, 0.05) 65%,
+    transparent 75%
+  );
+  background-size: 250% 250%;
+  pointer-events: none;
+  mix-blend-mode: color-dodge;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+}
+
+.holo-card:hover .holo-shine {
+  opacity: 0.85;
 }

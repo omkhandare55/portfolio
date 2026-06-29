@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useMotionTemplate, useMotionValue, useInView } from 'framer-motion';
+import { motion, useMotionTemplate, useMotionValue, useInView, useTransform } from 'framer-motion';
 import { ExternalLink, ArrowUpRight, Sparkles, BookOpen, Leaf } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import {
@@ -17,9 +17,11 @@ const projects = [
     icons: [<SiReact key="r" />, <SiTailwindcss key="t" />, <SiFirebase key="f" />],
     github: 'https://github.com/omkhandare55/Notes_App.git',
     live: 'https://notes-app-five-swart-56.vercel.app',
-    accent: '#f59e0b',
+    accent: '#a855f7', // Psychic Purple
     emoji: '📝',
     heroIcon: <Sparkles size={48} />,
+    pokeType: '🔮 Psychic / React.js',
+    hp: '120 HP',
   },
   {
     title: 'Election Education Assistant',
@@ -27,11 +29,13 @@ const projects = [
       'An ultra-secure, Google Gemini-powered educational platform designed to inform voters. Built with a clustered Next.js/Express architecture, Firebase, Helmet security layers, and Supertest test suites. Deployed on Google Cloud Run.',
     tags: ['Next.js', 'Gemini AI', 'Express.js', 'Firebase', 'Jest'],
     icons: [<SiReact key="nx" />, <SiNodedotjs key="nd" />, <SiFirebase key="fb" />],
-    github: 'https://github.com/omkhandare55', // Or keep standard profile link
+    github: 'https://github.com/omkhandare55',
     live: 'https://election-assistant-9504743892.us-central1.run.app',
-    accent: '#fbbf24',
+    accent: '#eab308', // Electric Yellow
     emoji: '🗳️',
     heroIcon: <BookOpen size={48} />,
+    pokeType: '⚡ Electric / Next.js',
+    hp: '160 HP',
   },
   {
     title: 'CPU Scheduling Simulator',
@@ -41,9 +45,11 @@ const projects = [
     icons: [<SiJavascript key="j" />],
     github: 'https://github.com/omkhandare55/CPU-Scheduling-Simulator.git',
     live: '#',
-    accent: '#d97706',
+    accent: '#94a3b8', // Steel Gray
     emoji: '⚙️',
-    heroIcon: <Leaf size={48} />, // Keep standard leaf/gear icon
+    heroIcon: <Leaf size={48} />,
+    pokeType: '🛡️ Steel / JavaScript',
+    hp: '100 HP',
   },
 ];
 
@@ -55,10 +61,30 @@ const ProjectCard = ({ project, index }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-50px' });
 
+  // 3D Tilt rotations
+  const rotateX = useTransform(mouseY, [0, 320], [8, -8]);
+  const rotateY = useTransform(mouseX, [0, 320], [-8, 8]);
+
+  // Holographic reflection percentages
+  const xPct = useTransform(mouseX, [0, 320], [0, 100]);
+  const yPct = useTransform(mouseY, [0, 320], [0, 100]);
+
+  const holoBackground = useMotionTemplate`radial-gradient(
+    circle at ${xPct}% ${yPct}%,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.04) 35%,
+    transparent 70%
+  )`;
+
   function handleMouseMove({ currentTarget, clientX, clientY }) {
     const { left, top } = currentTarget.getBoundingClientRect();
     mouseX.set(clientX - left);
     mouseY.set(clientY - top);
+  }
+
+  function handleMouseLeave() {
+    mouseX.set(160); // reset tilt
+    mouseY.set(160);
   }
 
   return (
@@ -67,17 +93,27 @@ const ProjectCard = ({ project, index }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.12 }}
-      className="group relative max-w-md w-full mx-auto"
+      className="group relative max-w-md w-full mx-auto holo-card cursor-default"
       onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: 'preserve-3d',
+        perspective: 1000,
+      }}
     >
-      {/* Spotlight hover */}
+      {/* Light sheen that moves with the cursor */}
+      <motion.div className="holo-shine" style={{ background: holoBackground }} />
+
+      {/* Spotlight hover border glow */}
       <div
         className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 z-0"
         style={{
           background: useMotionTemplate`
             radial-gradient(
               400px circle at ${mouseX}px ${mouseY}px,
-              ${project.accent}12,
+              ${project.accent}20,
               transparent 80%
             )
           `,
@@ -85,8 +121,15 @@ const ProjectCard = ({ project, index }) => {
       />
 
       <div className="relative h-full rounded-2xl overflow-hidden border border-white/[0.08] z-10 flex flex-col" style={{ background: '#0d0d0d' }}>
+        
+        {/* Pokémon Trading Card Header details */}
+        <div className="flex justify-between items-center px-5 pt-4 pb-2 border-b border-white/[0.04] text-[9px] font-extrabold uppercase tracking-widest text-white/40">
+          <span>{project.pokeType}</span>
+          <span style={{ color: project.accent }} className="font-mono">{project.hp}</span>
+        </div>
+
         {/* Visual Header — gradient + icon instead of placeholder image */}
-        <div className="w-full h-48 relative overflow-hidden flex items-center justify-center">
+        <div className="w-full h-44 relative overflow-hidden flex items-center justify-center border-b border-white/[0.04]">
           {/* Ambient gradient bg */}
           <div
             className="absolute inset-0"
@@ -123,7 +166,7 @@ const ProjectCard = ({ project, index }) => {
             {project.tags.slice(0, 2).map((tag, i) => (
               <span
                 key={i}
-                className="px-3 py-1 text-[10px] font-semibold uppercase tracking-wider rounded-full backdrop-blur-md"
+                className="px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider rounded-full backdrop-blur-md"
                 style={{
                   background: 'rgba(0,0,0,0.5)',
                   border: '1px solid rgba(255,255,255,0.1)',
@@ -136,11 +179,11 @@ const ProjectCard = ({ project, index }) => {
           </div>
 
           {/* Bottom fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-16" style={{ background: 'linear-gradient(transparent, #0d0d0d)' }} />
+          <div className="absolute bottom-0 left-0 right-0 h-12" style={{ background: 'linear-gradient(transparent, #0d0d0d)' }} />
         </div>
 
         {/* Content */}
-        <div className="p-6 flex-grow flex flex-col">
+        <div className="p-5 flex-grow flex flex-col">
           <h3 className="text-xl font-bold mb-2 group-hover:text-amber-400 transition-colors flex items-center gap-2">
             {project.title}
             <ArrowUpRight
@@ -239,7 +282,7 @@ const Projects = () => {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 60% 40% at 50% 100%, rgba(245,158,11,0.03) 0%, transparent 70%)',
+            'radial-gradient(ellipse 60% 40% at 50% 100%, rgba(255,255,255,0.01) 0%, transparent 70%)',
         }}
       />
 
@@ -256,7 +299,7 @@ const Projects = () => {
           <div className="w-24 h-1 bg-white/20 mx-auto rounded-full" />
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, idx) => (
             <ProjectCard key={idx} project={project} index={idx} />
           ))}
